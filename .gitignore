@@ -1,0 +1,34 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*$py.class
+
+# --- Virtual environments ---
+venv/
+env/
+.venv/
+ENV/
+.ENV/
+
+# --- Flask / local ---
+instance/
+uploads/
+*.db
+*.sqlite3
+
+# --- System files ---
+.DS_Store
+Thumbs.db
+
+# --- IDE / Editor stuff ---
+.vscode/
+.idea/
+
+# --- Logs and caches ---
+*.log
+.cache/
+*.bak
+*.swp
