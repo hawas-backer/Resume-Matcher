@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect, flash
 from werkzeug.utils import secure_filename
 from uuid import uuid4
 import os
@@ -34,7 +35,9 @@ def upload_file():
 		return f"File {filename} uploaded succesffuly to {UPLOAD_FOLDER}"
 
 
-
+@app.route('/test')
+def test():
+	return "<H1>TEST</H2>"
 
 if __name__ == '__main__':
 	app.run(debug=True)
