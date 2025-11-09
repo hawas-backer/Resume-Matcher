@@ -13,7 +13,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def make_unique(string):
-	ident = uuid4().__str__()
+	ident = uuid4().hex[:8]
 	return f"{ident}-{string}"
 
 @app.route("/")
