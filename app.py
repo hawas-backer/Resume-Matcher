@@ -37,7 +37,7 @@ def upload_file():
 
 @app.route('/test')
 def test():
-	return "<H1>TEST</H2>"
+	return "<H1>TESTING</H2>"
 
 if __name__ == '__main__':
 	app.run(debug=True)
