@@ -4,6 +4,7 @@ from flask import request
 from flask import redirect, flash
 from werkzeug.utils import secure_filename
 from uuid import uuid4
+import pdfplumber 
 import os
 
 app = Flask(__name__)
@@ -12,6 +13,15 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 #ALLOWED_EXTENSIONS = {'txt','pdf'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+def extract_from_pdf(path):
+	text = ""
+	with pdfplumber.open(path) as pdf:
+		for page in pdf.pages:
+			text += page.extract_text()
+	return text 
+	
 
 def make_unique(string):
 	ident = uuid4().hex[:8]
@@ -32,6 +42,13 @@ def upload_file():
 		filename = secure_filename(file.filename)
 		unique_filename = make_unique(filename)
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'],unique_filename))
+
+		text = extract_from_pdf(f"uploads/{unique_filename}")
+
+		print("_________EXTRACTED______")
+		print(text)
+
+
 		return f"File {filename} uploaded succesffuly to {UPLOAD_FOLDER}"
 
 
